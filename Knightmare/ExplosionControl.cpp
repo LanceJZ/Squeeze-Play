@@ -40,12 +40,15 @@ void ExplosionControl::Update(float deltaTime)
 
 }
 
-void ExplosionControl::Spawn(Vector3 position, int count, float time)
+void ExplosionControl::Spawn(Vector3 position, float radius, float speed,
+	int count, float time, Color color)
 {
 	for (int i = 0; i < count; i++)
 	{
-		Particles[SpawnPool()]->Spawn(position, time);
+		CubeColor = color;
+		Particles[SpawnPool()]->Spawn(position, radius, speed,  time);
 	}
+
 }
 
 void ExplosionControl::Reset()
@@ -64,7 +67,7 @@ size_t ExplosionControl::SpawnPool()
 
 		for (const auto& cube : Particles)
 		{
-			if (cube->Enabled)
+			if (!cube->Enabled)
 			{
 				spawnNew = false;
 				cubeSpawnNumber = cubeNumber;
@@ -79,6 +82,8 @@ size_t ExplosionControl::SpawnPool()
 			Particles.push_back(new ParticleCube());
 			Man->EM.AddModel3D(Particles[cubeSpawnNumber], CubeModel, 10.0f, Cam);
 		}
+
+		Particles[cubeSpawnNumber]->ModelColor = CubeColor;
 
 	return cubeSpawnNumber;
 }

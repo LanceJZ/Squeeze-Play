@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Border.h"
 #include "ScoreKeeper.h"
+#include "ExplosionControl.h"
 
 class EnemyOne : public Model3D
 {
@@ -16,6 +17,7 @@ public:
 	void SetBorderRef(Border* borders);
 	void SetScoreKeeperRef(ScoreKeeper* score);
 	void SetSound(Sound hit);
+	void SetExplosionControl(ExplosionControl* explosions);
 
 	bool Initialize();
 	bool BeginRun(Camera* camera);
@@ -38,6 +40,7 @@ private:
 	Player* ThePlayer = {};
 	Border* Borders = {};
 	ScoreKeeper* Score = {};
+	ExplosionControl* Explosions = {};
 
 	void ChasePlayer();
 	bool CheckCollision();

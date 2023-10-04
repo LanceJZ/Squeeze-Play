@@ -17,6 +17,8 @@ public:
 	ExplosionControl();
 	virtual ~ExplosionControl();
 
+	Color CubeColor = WHITE;
+
 	void SetCamera(Camera &camera);
 	void SetManagers(Managers& managers);
 	void SetCubeModel(Model model);
@@ -25,7 +27,8 @@ public:
 
 	virtual void Update(float deltaTime);
 
-	void Spawn(Vector3 position, int count, float time);
+	void Spawn(Vector3 position, float radius,
+		float speed,  int count, float time, Color color);
 	void Reset();
 
 private:

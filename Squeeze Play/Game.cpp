@@ -18,6 +18,7 @@ bool Game::Initialize(Camera &camera) //Initialize
 	Man.EM.AddCommon(Borders = new Border());
 	Man.EM.AddCommon(ScoreBoard = new ScoreKeeper());
 	Explosions->SetCamera(Cam);
+	Explosions->SetManagers(Man);
 	ThePlayer->SetManagersRef(Man);
 	ThePlayer->SetCameraRef(Cam);
 	ThePlayer->SetScoreKeeperRef(ScoreBoard);
@@ -27,6 +28,7 @@ bool Game::Initialize(Camera &camera) //Initialize
 	Enemies->SetPlayerRef(ThePlayer);
 	Enemies->SetBorderRef(Borders);
 	Enemies->SetScoreKeeperRef(ScoreBoard);
+	Enemies->SetExplosionControl(Explosions);
 	Borders->SetManagersRef(Man);
 	Borders->SetCameraRef(Cam);
 	ScoreBoard->SetManagersRef(Man.EM);
@@ -61,7 +63,7 @@ bool Game::Load()
 
 	Enemies->SetSounds(Man.CM.LoadAndGetSound("EnemyOneHit"),
 		Man.CM.LoadAndGetSound("EnemyTwoHit"),
-		Man.CM.LoadAndGetSound("EnemyOneFire"));
+		Man.CM.LoadAndGetSound("EnemyTwoFire"));
 
 	return true;
 }

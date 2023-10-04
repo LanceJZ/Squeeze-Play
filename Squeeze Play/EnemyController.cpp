@@ -56,6 +56,11 @@ void EnemyController::SetSounds(Sound oneHit, Sound twoHit, Sound twoFire)
 	TwoFireSound = twoFire;
 }
 
+void EnemyController::SetExplosionControl(ExplosionControl* explosions)
+{
+	Explosions = explosions;
+}
+
 bool EnemyController::Initialize()
 {
 
@@ -129,13 +134,14 @@ void EnemyController::SpawnOne(size_t count)
 		if (spawnNewOne)
 		{
 			Ones.push_back(new EnemyOne());
-			Man->EM.AddModel3D(Ones[oneNumber],
-				Man->CM.GetModel(ShipOneModelID), 15.0f, Cam);
 			Ones[oneNumber]->SetManagersRef(Man->EM);
 			Ones[oneNumber]->SetPlayerRef(ThePlayer);
 			Ones[oneNumber]->SetBorderRef(Borders);
 			Ones[oneNumber]->SetScoreKeeperRef(Score);
+			Ones[oneNumber]->SetExplosionControl(Explosions);
 			Ones[oneNumber]->SetSound(OneHitSound);
+			Man->EM.AddModel3D(Ones[oneNumber],
+				Man->CM.GetModel(ShipOneModelID), 15.0f, Cam);
 		}
 
 		Ones[oneNumber]->Spawn();
@@ -164,14 +170,15 @@ void EnemyController::SpawnTwo(size_t count)
 		if (spawnNewTwo)
 		{
 			Twos.push_back(new EnemyTwo());
-			Man->EM.AddModel3D(Twos[twoNumber],
-				Man->CM.GetModel(ShipTwoModelID), 15.0f, Cam);
+			Twos[twoNumber]->SetManagersRef(Man);
 			Twos[twoNumber]->SetShotModelID(ShotModelID);
-			Twos[twoNumber]->SetManagersRef(*Man);
 			Twos[twoNumber]->SetPlayerRef(ThePlayer);
 			Twos[twoNumber]->SetBorderRef(Borders);
 			Twos[twoNumber]->SetScoreKeeperRef(Score);
+			Twos[twoNumber]->SetExplosionControl(Explosions);
 			Twos[twoNumber]->SetSounds(TwoHitSound, TwoFireSound);
+			Man->EM.AddModel3D(Twos[twoNumber],
+				Man->CM.GetModel(ShipTwoModelID), 15.0f, Cam);
 		}
 
 		Twos[twoNumber]->Spawn();

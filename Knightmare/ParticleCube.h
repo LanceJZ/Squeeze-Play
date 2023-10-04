@@ -14,7 +14,7 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-	void Spawn(Vector3 position, float time);
+	void Spawn(Vector3 position, float radius, float speed, float time);
 
 private:
 	Timer LifeTimer;

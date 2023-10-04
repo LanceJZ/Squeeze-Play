@@ -8,9 +8,9 @@ EnemyTwo::~EnemyTwo()
 {
 }
 
-void EnemyTwo::SetManagersRef(Managers& man)
+void EnemyTwo::SetManagersRef(Managers* man)
 {
-	Man = &man;
+	Man = man;
 }
 
 void EnemyTwo::SetPlayerRef(Player* player)
@@ -37,6 +37,11 @@ void EnemyTwo::SetSounds(Sound hit, Sound fire)
 {
 	HitSound = hit;
 	FireSound = fire;
+}
+
+void EnemyTwo::SetExplosionControl(ExplosionControl* explosions)
+{
+	Explosions = explosions;
 }
 
 bool EnemyTwo::Initialize()
@@ -190,10 +195,11 @@ bool EnemyTwo::CheckCollision()
 void EnemyTwo::Collide()
 {
 	Enabled = false;
-	X(WindowWidth + 50.0f);
+	Explosions->Spawn(Position, 15.0f, 40.0f, 10.0f, 1.5f, PURPLE);
 	Borders->EnemyHit();
 	Score->Add(50);
 	PlaySound(HitSound);
+	X(WindowWidth + 50.0f);
 }
 
 void EnemyTwo::Fire()

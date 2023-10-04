@@ -3,6 +3,7 @@
 #include "EnemyOne.h"
 #include "EnemyTwo.h"
 #include "Managers.h"
+#include "ExplosionControl.h"
 #include "Border.h"
 #include "ScoreKeeper.h"
 
@@ -24,6 +25,7 @@ public:
 	void SetShipTwoModelID(size_t modelID);
 	void SetShotModelID(size_t modelID);
 	void SetSounds(Sound oneHit, Sound twoHit, Sound twoFire);
+	void SetExplosionControl(ExplosionControl* explosions);
 
 	bool Initialize();
 	bool BeginRun();
@@ -49,6 +51,7 @@ private:
 	Player* ThePlayer = {};
 	Border* Borders = {};
 	ScoreKeeper* Score = {};
+	ExplosionControl* Explosions = {};
 
 	void SpawnOne(size_t count);
 	void SpawnTwo(size_t count);

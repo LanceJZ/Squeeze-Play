@@ -5,6 +5,7 @@
 #include "Border.h"
 #include "EnemyShot.h"
 #include "ScoreKeeper.h"
+#include "ExplosionControl.h"
 
 class EnemyTwo : public Model3D
 {
@@ -14,12 +15,13 @@ public:
 
 	std::vector<EnemyShot*> Shots;
 
-	void SetManagersRef(Managers& man);
+	void SetManagersRef(Managers* man);
 	void SetPlayerRef(Player* player);
 	void SetBorderRef(Border* borders);
 	void SetScoreKeeperRef(ScoreKeeper* score);
 	void SetShotModelID(size_t modelID);
 	void SetSounds(Sound hit, Sound fire);
+	void SetExplosionControl(ExplosionControl* explosions);
 
 	bool Initialize();
 	bool BeginRun(Camera* camera);
@@ -43,6 +45,7 @@ private:
 	Player* ThePlayer = {};
 	Border* Borders = {};
 	ScoreKeeper* Score = {};
+	ExplosionControl* Explosions = {};
 
 	void ChasePlayer();
 	bool CheckCollision();

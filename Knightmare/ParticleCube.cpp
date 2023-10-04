@@ -43,10 +43,13 @@ void ParticleCube::Draw()
 
 }
 
-void ParticleCube::Spawn(Vector3 position, float time)
+void ParticleCube::Spawn(Vector3 position, float radius, float speed, float time)
 {
 	Enabled = true;
-	Position = position;
+	Vector3 spawnPos = position;
+	spawnPos.x += GetRandomFloat(-radius, radius);
+	spawnPos.y += GetRandomFloat(-radius, radius);
+	Position = spawnPos;
 	LifeTimer.Reset(time);
-	Velocity = GetRandomVelocity(GetRandomFloat(10.0f, 50.0f));
+	Velocity = GetRandomVelocity(GetRandomFloat(speed * 0.25f, speed));
 }

@@ -33,6 +33,11 @@ void EnemyOne::SetSound(Sound hit)
 	HitSound = hit;
 }
 
+void EnemyOne::SetExplosionControl(ExplosionControl* explosions)
+{
+	Explosions = explosions;
+}
+
 bool EnemyOne::Initialize()
 {
 	Model3D::Initialize();
@@ -133,8 +138,9 @@ bool EnemyOne::CheckCollision()
 void EnemyOne::Collide()
 {
 	Enabled = false;
-	X(WindowWidth + 50.0f);
+	Explosions->Spawn(Position, 15.0f, 40.0f, 10.0f, 1.5f, RED);
 	Borders->EnemyHit();
 	Score->Add(10);
 	PlaySound(HitSound);
+	X(WindowWidth + 50.0f);
 }
