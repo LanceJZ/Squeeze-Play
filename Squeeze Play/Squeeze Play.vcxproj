@@ -169,6 +169,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerShot.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="ScoreKeeper.h" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +179,9 @@
     <ProjectReference Include="..\raylib-4.5.0-Release\projects\VS2022\raylib\raylib.vcxproj">
       <Project>{e89d61ac-55de-4482-afd4-df7242ebc859}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Squeeze Play.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
