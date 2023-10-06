@@ -150,9 +150,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Border.cpp" />
+    <ClCompile Include="Enemy.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EnemyController.cpp" />
     <ClCompile Include="EnemyOne.cpp" />
     <ClCompile Include="EnemyShot.cpp" />
+    <ClCompile Include="EnemyThree.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EnemyTwo.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -162,9 +170,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Border.h" />
+    <ClInclude Include="Enemy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EnemyController.h" />
     <ClInclude Include="EnemyOne.h" />
     <ClInclude Include="EnemyShot.h" />
+    <ClInclude Include="EnemyThree.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EnemyTwo.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />

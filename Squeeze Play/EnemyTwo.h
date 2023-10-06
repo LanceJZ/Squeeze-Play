@@ -1,13 +1,8 @@
 #pragma once
-#include "Model3D.h"
-#include "Managers.h"
-#include "Player.h"
-#include "Border.h"
+#include "Enemy.h"
 #include "EnemyShot.h"
-#include "ScoreKeeper.h"
-#include "ExplosionControl.h"
 
-class EnemyTwo : public Model3D
+class EnemyTwo : public Enemy
 {
 public:
 	EnemyTwo();
@@ -15,13 +10,8 @@ public:
 
 	std::vector<EnemyShot*> Shots;
 
-	void SetManagersRef(Managers* man);
-	void SetPlayerRef(Player* player);
-	void SetBorderRef(Border* borders);
-	void SetScoreKeeperRef(ScoreKeeper* score);
 	void SetShotModelID(size_t modelID);
 	void SetSounds(Sound hit, Sound fire);
-	void SetExplosionControl(ExplosionControl* explosions);
 
 	bool Initialize();
 	bool BeginRun(Camera* camera);
@@ -38,17 +28,9 @@ private:
 	float Speed = 22.666f;
 	float MaxSpeed = 52.666;
 
-	Sound HitSound;
-	Sound FireSound;
+	Sound FireSound = {};
 
-	Managers* Man = {};
-	Player* ThePlayer = {};
-	Border* Borders = {};
-	ScoreKeeper* Score = {};
-	ExplosionControl* Explosions = {};
-
-	void ChasePlayer();
-	bool CheckCollision();
+	void ChangeVelocity();
 	void Collide();
 	void Fire();
 };

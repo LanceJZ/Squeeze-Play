@@ -1,23 +1,11 @@
 #pragma once
-#include "Model3D.h"
-#include "EntityManager.h"
-#include "Player.h"
-#include "Border.h"
-#include "ScoreKeeper.h"
-#include "ExplosionControl.h"
+#include "Enemy.h"
 
-class EnemyOne : public Model3D
+class EnemyOne : public Enemy
 {
 public:
 	EnemyOne();
 	virtual ~EnemyOne();
-
-	void SetManagersRef(EntityManager& man);
-	void SetPlayerRef(Player* player);
-	void SetBorderRef(Border* borders);
-	void SetScoreKeeperRef(ScoreKeeper* score);
-	void SetSound(Sound hit);
-	void SetExplosionControl(ExplosionControl* explosions);
 
 	bool Initialize();
 	bool BeginRun(Camera* camera);
@@ -34,15 +22,6 @@ private:
 	float MaxTurnSpeed = 0.25f;
 	float RotateMagnitude = PI / 2;
 
-	Sound HitSound;
-
-	EntityManager* Man = {};
-	Player* ThePlayer = {};
-	Border* Borders = {};
-	ScoreKeeper* Score = {};
-	ExplosionControl* Explosions = {};
-
-	void ChasePlayer();
-	bool CheckCollision();
 	void Collide();
+	void ChasePlayer();
 };

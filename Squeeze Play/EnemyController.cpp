@@ -134,11 +134,11 @@ void EnemyController::SpawnOne(size_t count)
 		if (spawnNewOne)
 		{
 			Ones.push_back(new EnemyOne());
-			Ones[oneNumber]->SetManagersRef(Man->EM);
+			Ones[oneNumber]->SetManagersRef(Man);
 			Ones[oneNumber]->SetPlayerRef(ThePlayer);
 			Ones[oneNumber]->SetBorderRef(Borders);
 			Ones[oneNumber]->SetScoreKeeperRef(Score);
-			Ones[oneNumber]->SetExplosionControl(Explosions);
+			Ones[oneNumber]->SetExplosionControlRef(Explosions);
 			Ones[oneNumber]->SetSound(OneHitSound);
 			Man->EM.AddModel3D(Ones[oneNumber],
 				Man->CM.GetModel(ShipOneModelID), 15.0f, Cam);
@@ -175,7 +175,7 @@ void EnemyController::SpawnTwo(size_t count)
 			Twos[twoNumber]->SetPlayerRef(ThePlayer);
 			Twos[twoNumber]->SetBorderRef(Borders);
 			Twos[twoNumber]->SetScoreKeeperRef(Score);
-			Twos[twoNumber]->SetExplosionControl(Explosions);
+			Twos[twoNumber]->SetExplosionControlRef(Explosions);
 			Twos[twoNumber]->SetSounds(TwoHitSound, TwoFireSound);
 			Man->EM.AddModel3D(Twos[twoNumber],
 				Man->CM.GetModel(ShipTwoModelID), 15.0f, Cam);

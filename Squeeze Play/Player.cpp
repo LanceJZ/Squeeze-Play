@@ -28,6 +28,11 @@ void Player::SetScoreKeeperRef(ScoreKeeper* score)
 	Score = score;
 }
 
+void Player::SetExplosionControlRef(ExplosionControl* explosions)
+{
+	Explosions = explosions;
+}
+
 void Player::SetSounds(Sound fireSound, Sound explodeSound, Sound thrustSound)
 {
 	FireSound = fireSound;
@@ -106,6 +111,7 @@ void Player::Draw()
 
 void Player::Hit()
 {
+	Explosions->Spawn(Position, 20.0f, 50.0f, 25, 2.5f, BLUE);
 	PlaySound(ExplodeSound);
 
 	Lives -= 1;

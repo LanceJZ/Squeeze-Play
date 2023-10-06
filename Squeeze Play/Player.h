@@ -4,6 +4,7 @@
 #include "Border.h"
 #include "PlayerShot.h"
 #include "ScoreKeeper.h"
+#include "ExplosionControl.h"
 
 struct ShotandTimer
 {
@@ -30,6 +31,7 @@ public:
 	void SetCameraRef(Camera& cam);
 	void SetBorderRef(Border* borders);
 	void SetScoreKeeperRef(ScoreKeeper* score);
+	void SetExplosionControlRef(ExplosionControl* explosions);
 	void SetSounds(Sound fireSound, Sound explodeSound, Sound thrustSound);
 	void SetShotSound(Sound borderHit);
 	void SetShipModelID(size_t modelID);
@@ -64,6 +66,7 @@ private:
 	Managers* Man = {};
 	Camera* Cam = {};
 	ScoreKeeper* Score = {};
+	ExplosionControl* Explosions = {};
 
 	void CheckBorderHit();
 	void Fire();

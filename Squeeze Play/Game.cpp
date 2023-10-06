@@ -49,6 +49,7 @@ bool Game::Load()
 	// Load Models.
 	ThePlayer->SetShipModelID(Man.CM.LoadTheModel("PlayerShip"));
 	ThePlayer->SetShotModelID(Man.CM.LoadTheModel("PlayerShot"));
+	ThePlayer->SetExplosionControlRef(Explosions);
 	Enemies->SetShipOneModelID(Man.CM.LoadTheModel("EnemyOne"));
 	Enemies->SetShipTwoModelID(Man.CM.LoadTheModel("EnemyTwo"));
 	Enemies->SetShotModelID(Man.CM.LoadTheModel("EnemyShot"));

@@ -8,26 +8,6 @@ EnemyTwo::~EnemyTwo()
 {
 }
 
-void EnemyTwo::SetManagersRef(Managers* man)
-{
-	Man = man;
-}
-
-void EnemyTwo::SetPlayerRef(Player* player)
-{
-	ThePlayer = player;
-}
-
-void EnemyTwo::SetBorderRef(Border* borders)
-{
-	Borders = borders;
-}
-
-void EnemyTwo::SetScoreKeeperRef(ScoreKeeper* score)
-{
-	Score = score;
-}
-
 void EnemyTwo::SetShotModelID(size_t modelID)
 {
 	ShotModelID = modelID;
@@ -35,18 +15,14 @@ void EnemyTwo::SetShotModelID(size_t modelID)
 
 void EnemyTwo::SetSounds(Sound hit, Sound fire)
 {
-	HitSound = hit;
-	FireSound = fire;
-}
+	Enemy::SetSound(hit);
 
-void EnemyTwo::SetExplosionControl(ExplosionControl* explosions)
-{
-	Explosions = explosions;
+	FireSound = fire;
 }
 
 bool EnemyTwo::Initialize()
 {
-	Model3D::Initialize();
+	Enemy::Initialize();
 
 	Radius = 18;
 	Cull = false;
@@ -56,7 +32,7 @@ bool EnemyTwo::Initialize()
 
 bool EnemyTwo::BeginRun(Camera* camera)
 {
-	Model3D::BeginRun(camera);
+	Enemy::BeginRun(camera);
 
 	FireTimerID = Man->EM.AddTimer(5.0f);
 	DistanceTimerID = Man->EM.AddTimer(4.0f);
@@ -66,7 +42,7 @@ bool EnemyTwo::BeginRun(Camera* camera)
 
 void EnemyTwo::Update(float deltaTime)
 {
-	Model3D::Update(deltaTime);
+	Enemy::Update(deltaTime);
 
 	if (Man->EM.Timers[FireTimerID]->Elapsed())
 	{
@@ -79,59 +55,19 @@ void EnemyTwo::Update(float deltaTime)
 	{
 		float time = GetRandomFloat(2.15f, 5.15f);
 		Man->EM.Timers[DistanceTimerID]->Reset(time);
-		ChasePlayer();
+		ChangeVelocity();
 	}
-
-	if (CheckCollision()) Collide();
 }
 
 void EnemyTwo::Draw()
 {
-	Model3D::Draw();
+	Enemy::Draw();
 
 }
 
 void EnemyTwo::Spawn()
 {
-	Enabled = true;
-
-	float range = 0.95f;
-	float rX = GetRandomFloat(-range, range);
-	float rY = GetRandomFloat(-range, range);
-	float rZ = GetRandomFloat(-range, range);
-	RotationAxis = { rX, rY, rZ };
-	RotationVelocity = GetRandomFloat(1.5f, 3.5f);
-
-
-	float buffer = 1.0f;
-	float x = GetRandomFloat(-WindowWidth, WindowWidth);
-	float y = GetRandomFloat(-WindowHeight, WindowHeight);
-
-	if (GetRandomValue(1, 100) < 50)
-	{
-		if (GetRandomValue(1, 100) < 50)
-		{
-			x = WindowWidth + buffer;
-		}
-		else
-		{
-			x = -WindowWidth - buffer;
-		}
-	}
-	else
-	{
-		if (GetRandomValue(1, 100) < 50)
-		{
-			y = WindowHeight + buffer;
-		}
-		else
-		{
-			y = -WindowHeight - buffer;
-		}
-	}
-
-	X(x);
-	Y(y);
+	Enemy::Spawn();
 
 	Man->EM.Timers[FireTimerID]->Reset(5.0f);
 	Man->EM.Timers[DistanceTimerID]->Reset(4.0f);
@@ -140,7 +76,7 @@ void EnemyTwo::Spawn()
 	Velocity = VelocityFromAngleZ(angle, Speed);
 }
 
-void EnemyTwo::ChasePlayer()
+void EnemyTwo::ChangeVelocity()
 {
 	float distanceX = GetRandomFloat(50.0f, 100.0f);
 	float distanceY = GetRandomFloat(40.0f, 90.0f);
@@ -170,36 +106,11 @@ void EnemyTwo::ChasePlayer()
 	}
 }
 
-bool EnemyTwo::CheckCollision()
-{
-	if (CirclesIntersect(*ThePlayer) && ThePlayer->Enabled)
-	{
-		ThePlayer->Hit();
-
-		return true;
-	}
-
-	for (auto &shot : ThePlayer->Shots)
-	{
-		if (CirclesIntersect(*shot) && shot->Enabled)
-		{
-			shot->Enabled = false;
-
-			return true;
-		}
-	}
-
-	return false;
-}
-
 void EnemyTwo::Collide()
 {
-	Enabled = false;
-	Explosions->Spawn(Position, 15.0f, 40.0f, 10.0f, 1.5f, PURPLE);
-	Borders->EnemyHit();
-	Score->Add(50);
-	PlaySound(HitSound);
-	X(WindowWidth + 50.0f);
+	Enemy::Collide();
+
+	Explosions->Spawn(Position, 20.0f, 40.0f, 15, 1.5f, PURPLE);
 }
 
 void EnemyTwo::Fire()
