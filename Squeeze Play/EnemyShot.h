@@ -20,7 +20,7 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-	void Spawn(Vector3 pos, size_t timerAmount);
+	void Spawn(Vector3 pos, Vector3 vel, size_t timerAmount);
 
 private:
 	size_t ShotTimerID = 0;

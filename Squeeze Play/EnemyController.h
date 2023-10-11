@@ -3,6 +3,7 @@
 #include "EnemyOne.h"
 #include "EnemyTwo.h"
 #include "Managers.h"
+#include "EnemyShotFactory.h"
 #include "ExplosionControl.h"
 #include "Border.h"
 #include "ScoreKeeper.h"
@@ -42,9 +43,9 @@ private:
 	size_t SpawnTimerID = 0;
 	int WaveOne = 0;
 
-	Sound OneHitSound;
-	Sound TwoHitSound;
-	Sound TwoFireSound;
+	Sound OneHitSound = {};
+	Sound TwoHitSound = {};
+	Sound TwoFireSound = {};
 
 	Managers* Man = {};
 	Camera* Cam = {};
@@ -52,6 +53,7 @@ private:
 	Border* Borders = {};
 	ScoreKeeper* Score = {};
 	ExplosionControl* Explosions = {};
+	EnemyShotFactory ESF = {};
 
 	void SpawnOne(size_t count);
 	void SpawnTwo(size_t count);

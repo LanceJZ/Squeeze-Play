@@ -60,7 +60,7 @@ void EnemyShot::Draw()
 
 }
 
-void EnemyShot::Spawn(Vector3 pos, size_t timerAmount)
+void EnemyShot::Spawn(Vector3 pos, Vector3 vel, size_t timerAmount)
 {
 	Position = pos;
 	Position.z = 10;
@@ -74,9 +74,7 @@ void EnemyShot::Spawn(Vector3 pos, size_t timerAmount)
 	float rZ = GetRandomFloat(-range, range);
 	RotationAxis = { rX, rY, rZ };
 	RotationVelocity = GetRandomFloat(1.5f, 3.5f);
-
-	float angle = AngleFromVectorZ(ThePlayer->Position);
-	Velocity = VelocityFromAngleZ(angle, 100);
+	Velocity = vel;
 }
 
 bool EnemyShot::CheckCollision()

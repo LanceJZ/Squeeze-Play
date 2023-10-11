@@ -179,8 +179,16 @@
     </ClCompile>
     <ClCompile Include="Model3D.cpp" />
     <ClCompile Include="ParticleCube.cpp" />
+    <ClCompile Include="ParticleManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PositionedObject.cpp" />
     <ClCompile Include="Scene.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ThrustControl.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -202,9 +210,17 @@
     </ClInclude>
     <ClInclude Include="Model3D.h" />
     <ClInclude Include="ParticleCube.h" />
+    <ClInclude Include="ParticleManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PositionedObject.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ThrustControl.h">
       <SubType>
       </SubType>
     </ClInclude>

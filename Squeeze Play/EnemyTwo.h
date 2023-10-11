@@ -1,6 +1,6 @@
 #pragma once
 #include "Enemy.h"
-#include "EnemyShot.h"
+#include "EnemyShotFactory.h"
 
 class EnemyTwo : public Enemy
 {
@@ -8,8 +8,7 @@ public:
 	EnemyTwo();
 	virtual ~EnemyTwo();
 
-	std::vector<EnemyShot*> Shots;
-
+	void SetEnemyShotFactoryRef(EnemyShotFactory* esf);
 	void SetShotModelID(size_t modelID);
 	void SetSounds(Sound hit, Sound fire);
 
@@ -29,6 +28,7 @@ private:
 	float MaxSpeed = 52.666;
 
 	Sound FireSound = {};
+	EnemyShotFactory* ESF = {};
 
 	void ChangeVelocity();
 	void Collide();

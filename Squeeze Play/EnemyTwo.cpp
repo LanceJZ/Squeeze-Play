@@ -8,6 +8,11 @@ EnemyTwo::~EnemyTwo()
 {
 }
 
+void EnemyTwo::SetEnemyShotFactoryRef(EnemyShotFactory* esf)
+{
+	ESF = esf;
+}
+
 void EnemyTwo::SetShotModelID(size_t modelID)
 {
 	ShotModelID = modelID;
@@ -116,29 +121,9 @@ void EnemyTwo::Collide()
 void EnemyTwo::Fire()
 {
 	PlaySound(FireSound);
-	bool spawnShot = true;
-	size_t shotNumber = Shots.size();
 
-	for (size_t shotCheck = 0; shotCheck < shotNumber; shotCheck++)
-	{
-		if (!Shots[shotCheck]->Enabled)
-		{
-			spawnShot = false;
-			shotNumber = shotCheck;
-			break;
-		}
-	}
+	float angle = AngleFromVectorZ(ThePlayer->Position);
+	Vector3 vel = VelocityFromAngleZ(angle, 100);
 
-	if (spawnShot)
-	{
-		Shots.push_back(new EnemyShot());
-		Man->EM.AddModel3D(Shots[shotNumber]);
-		Shots[shotNumber]->SetModel(Man->CM.GetModel(ShotModelID), 3.75f);
-		Shots[shotNumber]->SetManagersRef(Man->EM);
-		Shots[shotNumber]->SetPlayerRef(ThePlayer);
-		Shots[shotNumber]->SetBorderRef(Borders);
-		Shots[shotNumber]->BeginRun(GetCamera());
-	}
-
-	Shots[shotNumber]->Spawn(Position, 5.0f);
+	ESF->Spawn(Position, vel, 5.0f, ShotModelID);
 }

@@ -157,6 +157,10 @@
     <ClCompile Include="EnemyController.cpp" />
     <ClCompile Include="EnemyOne.cpp" />
     <ClCompile Include="EnemyShot.cpp" />
+    <ClCompile Include="EnemyShotFactory.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EnemyThree.cpp">
       <SubType>
       </SubType>
@@ -177,6 +181,10 @@
     <ClInclude Include="EnemyController.h" />
     <ClInclude Include="EnemyOne.h" />
     <ClInclude Include="EnemyShot.h" />
+    <ClInclude Include="EnemyShotFactory.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EnemyThree.h">
       <SubType>
       </SubType>

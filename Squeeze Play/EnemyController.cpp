@@ -2,7 +2,6 @@
 
 EnemyController::EnemyController()
 {
-
 }
 
 EnemyController::~EnemyController()
@@ -71,7 +70,11 @@ bool EnemyController::BeginRun()
 {
 	SpawnTimerID = Man->EM.AddTimer(3.0f);
 
-	return false;
+	ESF.SetCameraRef(Cam);
+	ESF.SetManagersRef(Man);
+	ESF.SetPlayerRef(ThePlayer);
+
+	return true;
 }
 
 void EnemyController::Update()
@@ -104,12 +107,9 @@ void EnemyController::Reset()
 	for (auto two : Twos)
 	{
 		two->Enabled = false;
-
-		for (auto shot : two->Shots)
-		{
-			shot->Enabled = false;
-		}
 	}
+
+	ESF.Reset();
 
 	WaveOne = 0;
 }
@@ -176,6 +176,7 @@ void EnemyController::SpawnTwo(size_t count)
 			Twos[twoNumber]->SetBorderRef(Borders);
 			Twos[twoNumber]->SetScoreKeeperRef(Score);
 			Twos[twoNumber]->SetExplosionControlRef(Explosions);
+			Twos[twoNumber]->SetEnemyShotFactoryRef(&ESF);
 			Twos[twoNumber]->SetSounds(TwoHitSound, TwoFireSound);
 			Man->EM.AddModel3D(Twos[twoNumber],
 				Man->CM.GetModel(ShipTwoModelID), 15.0f, Cam);

@@ -1,7 +1,5 @@
 #pragma once
-#include "ParticleManager.h"
-#include "Managers.h"
-#include "ParticleCube.h"
+#include "Common.h"
 
 #ifdef _DEBUG
 	#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
@@ -11,19 +9,18 @@
 	#define DBG_NEW new
 #endif
 
-class ExplosionControl : public ParticleManager
+class ThrustControl : public Common
 {
 public:
-	ExplosionControl();
-	virtual ~ExplosionControl();
+	ThrustControl();
+	virtual ~ThrustControl();
 
 	bool Initialize();
 	bool BeginRun();
 
+	void Input();
 	void Update();
-
-	void Spawn(Vector3 position, float radius,
-		float speed,  int count, float time, Color color);
+	void Draw();
 
 private:
 
