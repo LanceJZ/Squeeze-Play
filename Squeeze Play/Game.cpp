@@ -13,16 +13,21 @@ bool Game::Initialize(Camera &camera) //Initialize
 	Cam = camera;
 
 	Man.EM.AddCommon(Explosions = new ExplosionControl());
-	Man.EM.AddModel3D(ThePlayer = new Player()); //Don't add camera yet.
+	Man.EM.AddCommon(Thrusts = new ThrustControl());
+	Man.EM.AddModel3D(ThePlayer = new Player());
 	Man.EM.AddCommon(Enemies = new EnemyController());
 	Man.EM.AddCommon(Borders = new Border());
 	Man.EM.AddCommon(ScoreBoard = new ScoreKeeper());
 	Explosions->SetCamera(Cam);
 	Explosions->SetManagers(Man);
+	Thrusts->SetCamera(Cam);
+	Thrusts->SetManagers(Man);
 	ThePlayer->SetManagersRef(Man);
 	ThePlayer->SetCameraRef(Cam);
 	ThePlayer->SetScoreKeeperRef(ScoreBoard);
 	ThePlayer->SetBorderRef(Borders);
+	ThePlayer->SetExplosionControlRef(Explosions);
+	ThePlayer->SetThrustControlRef(Thrusts);
 	Enemies->SetManagersRef(Man);
 	Enemies->SetCameraRef(Cam);
 	Enemies->SetPlayerRef(ThePlayer);
@@ -36,7 +41,7 @@ bool Game::Initialize(Camera &camera) //Initialize
 	Man.Initialize();
 
 	SetTargetFPS(120);
-	SetWindowTitle("Squeeze Play 0.1");
+	SetWindowTitle("Squeeze Play 0.25");
 
 	return true;
 }
@@ -44,12 +49,13 @@ bool Game::Initialize(Camera &camera) //Initialize
 bool Game::Load()
 {
 	// Load Engine Models.
-	Explosions->SetCubeModel(Man.CM.LoadAndGetModel("Cube"));
+	Model cubeModel = Man.CM.LoadAndGetModel("Cube");
+	Explosions->SetCubeModel(cubeModel);
+	Thrusts->SetCubeModel(cubeModel);
 
 	// Load Models.
 	ThePlayer->SetShipModelID(Man.CM.LoadTheModel("PlayerShip"));
 	ThePlayer->SetShotModelID(Man.CM.LoadTheModel("PlayerShot"));
-	ThePlayer->SetExplosionControlRef(Explosions);
 	Enemies->SetShipOneModelID(Man.CM.LoadTheModel("EnemyOne"));
 	Enemies->SetShipTwoModelID(Man.CM.LoadTheModel("EnemyTwo"));
 	Enemies->SetShotModelID(Man.CM.LoadTheModel("EnemyShot"));

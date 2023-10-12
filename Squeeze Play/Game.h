@@ -5,6 +5,7 @@
 #include "ExplosionControl.h"
 #include "Player.h"
 #include "EnemyController.h"
+#include "ThrustControl.h"
 #include "Border.h"
 #include "ScoreKeeper.h"
 
@@ -39,6 +40,7 @@ public:
 private:
 	Managers Man = {};
 	ExplosionControl* Explosions = {};
+	ThrustControl* Thrusts = {};
 	Player* ThePlayer = {};
 	EnemyController* Enemies = {};
 	Border* Borders = {};

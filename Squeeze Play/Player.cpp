@@ -33,6 +33,11 @@ void Player::SetExplosionControlRef(ExplosionControl* explosions)
 	Explosions = explosions;
 }
 
+void Player::SetThrustControlRef(ThrustControl* thrust)
+{
+	Thrust = thrust;
+}
+
 void Player::SetSounds(Sound fireSound, Sound explodeSound, Sound thrustSound)
 {
 	FireSound = fireSound;
@@ -133,6 +138,11 @@ void Player::Reset()
 	Velocity = { 0, 0, 0 };
 	Acceleration = { 0, 0, 0 };
 	Enabled = true;
+
+	for (auto shot : Shots)
+	{
+		shot->Enabled = false;
+	}
 }
 
 void Player::NewGame()
@@ -234,6 +244,12 @@ void Player::ThrustOn(float deltaTime)
 	{
 		PlaySound(ThrustSound);
 	}
+
+	Vector3 thrustVol = Vector3Multiply(Velocity, { -1.0f, -1.0f, 0 });
+	thrustVol = Vector3Multiply(thrustVol, { 2.5, 2.5, 0 });
+	Vector3 thrustPos = Vector3Add(VelocityFromAngleZ(-Radius), Position);
+
+	Thrust->Spawn(thrustPos, thrustVol, 0.1f, 180.0f, 50, 0.15f, YELLOW);
 
 	Acceleration = AccelerationToMaxAtRotation(350.666f, 0.001f, deltaTime);
 }
