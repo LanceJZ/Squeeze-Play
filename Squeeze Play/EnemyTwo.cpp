@@ -78,7 +78,7 @@ void EnemyTwo::Spawn()
 	Man->EM.Timers[DistanceTimerID]->Reset(4.0f);
 
 	float angle = AngleFromVectorZ(ThePlayer->Position);
-	Velocity = VelocityFromAngleZ(angle, Speed);
+	Velocity = GetVelocityFromAngleZ(angle, Speed);
 }
 
 void EnemyTwo::ChangeVelocity()
@@ -123,7 +123,7 @@ void EnemyTwo::Fire()
 	PlaySound(FireSound);
 
 	float angle = AngleFromVectorZ(ThePlayer->Position);
-	Vector3 vel = VelocityFromAngleZ(angle, 100);
+	Vector3 vel = GetVelocityFromAngleZ(angle, 100.0f);
 
 	ESF->Spawn(Position, vel, 5.0f, ShotModelID);
 }

@@ -53,7 +53,6 @@ public:
 	float AngleFromVectorZ(Vector3 target);
 	Vector3 RandomVelocity(float magnitude);
 	Vector3 VelocityFromAngleZ(float magnitude);
-	Vector3 VelocityFromAngleZ(float angle, float magnitude);
 	Vector3 AccelerationToMaxAtRotation(float accelerationAmount, float topSpeed,
 		float deltaTime);
 	Vector3 DecelerationToZero(float decelerationAmount, float deltaTime);

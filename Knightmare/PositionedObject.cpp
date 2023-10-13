@@ -51,7 +51,7 @@ Vector3 PositionedObject::RandomVelocity(float magnitude)
 {
 	float ang = GetRandomFloat(0, PI * 2);
 
-	return VelocityFromAngleZ(ang, magnitude);
+	return GetVelocityFromAngleZ(ang, magnitude);
 }
 
 Vector3 PositionedObject::VelocityFromAngleZ(float magnitude)
@@ -59,10 +59,6 @@ Vector3 PositionedObject::VelocityFromAngleZ(float magnitude)
 	return { cosf(Rotation) * magnitude, sinf(Rotation) * magnitude, 0 };
 }
 
-Vector3 PositionedObject::VelocityFromAngleZ(float angle, float magnitude)
-{
-	return { cosf(angle) * magnitude, (float)sin(angle) * magnitude, 0 };
-}
 //Returns Vector3 acceleration based on acceleration amount this frame, to a max amount.
 Vector3 PositionedObject::AccelerationToMaxAtRotation(float accelerationAmount, float topSpeed, float deltaTime)
 {
@@ -307,7 +303,7 @@ void PositionedObject::LeavePlay(float turnSpeed, float speed)
 void PositionedObject::RotateVelocity(Vector3 position, float turnSpeed, float speed)
 {
 	RotationVelocity = RotateTowardsTargetZ(position, turnSpeed);
-	Velocity = VelocityFromAngleZ(Rotation, speed);
+	Velocity = GetVelocityFromAngleZ(Rotation, speed);
 }
 
 void PositionedObject::CheckPlayfieldSidesWarp(float left, float right)
