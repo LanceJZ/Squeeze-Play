@@ -8,26 +8,9 @@ EnemyTwo::~EnemyTwo()
 {
 }
 
-void EnemyTwo::SetEnemyShotFactoryRef(EnemyShotFactory* esf)
-{
-	ESF = esf;
-}
-
-void EnemyTwo::SetShotModelID(size_t modelID)
-{
-	ShotModelID = modelID;
-}
-
-void EnemyTwo::SetSounds(Sound hit, Sound fire)
-{
-	Enemy::SetSound(hit);
-
-	FireSound = fire;
-}
-
 bool EnemyTwo::Initialize()
 {
-	Enemy::Initialize();
+	EnemyFires::Initialize();
 
 	Radius = 18;
 	Cull = false;
@@ -37,17 +20,17 @@ bool EnemyTwo::Initialize()
 
 bool EnemyTwo::BeginRun(Camera* camera)
 {
-	Enemy::BeginRun(camera);
+	EnemyFires::BeginRun(camera);
 
-	FireTimerID = Man->EM.AddTimer(5.0f);
 	DistanceTimerID = Man->EM.AddTimer(4.0f);
+	Man->EM.Timers[FireTimerID]->Reset(5.0f);
 
 	return false;
 }
 
 void EnemyTwo::Update(float deltaTime)
 {
-	Enemy::Update(deltaTime);
+	EnemyFires::Update(deltaTime);
 
 	if (Man->EM.Timers[FireTimerID]->Elapsed())
 	{
@@ -66,13 +49,13 @@ void EnemyTwo::Update(float deltaTime)
 
 void EnemyTwo::Draw()
 {
-	Enemy::Draw();
+	EnemyFires::Draw();
 
 }
 
 void EnemyTwo::Spawn()
 {
-	Enemy::Spawn();
+	EnemyFires::Spawn();
 
 	Man->EM.Timers[FireTimerID]->Reset(5.0f);
 	Man->EM.Timers[DistanceTimerID]->Reset(4.0f);
@@ -113,7 +96,7 @@ void EnemyTwo::ChangeVelocity()
 
 void EnemyTwo::Collide()
 {
-	Enemy::Collide();
+	EnemyFires::Collide();
 
 	Explosions->Spawn(Position, 20.0f, 40.0f, 15, 1.5f, PURPLE);
 }

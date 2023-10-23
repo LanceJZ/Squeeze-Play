@@ -54,6 +54,9 @@
     <ClCompile Include="EnemyShotFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyFires.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="EnemyShotFactory.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFires.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

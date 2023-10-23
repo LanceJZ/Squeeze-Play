@@ -1,16 +1,11 @@
 #pragma once
-#include "Enemy.h"
-#include "EnemyShotFactory.h"
+#include "EnemyFires.h"
 
-class EnemyTwo : public Enemy
+class EnemyTwo : public EnemyFires
 {
 public:
 	EnemyTwo();
 	virtual ~EnemyTwo();
-
-	void SetEnemyShotFactoryRef(EnemyShotFactory* esf);
-	void SetShotModelID(size_t modelID);
-	void SetSounds(Sound hit, Sound fire);
 
 	bool Initialize();
 	bool BeginRun(Camera* camera);
@@ -22,13 +17,8 @@ public:
 
 private:
 	size_t DistanceTimerID = 0;
-	size_t FireTimerID = 0;
-	size_t ShotModelID = 0;
 	float Speed = 22.666f;
 	float MaxSpeed = 52.666;
-
-	Sound FireSound = {};
-	EnemyShotFactory* ESF = {};
 
 	void ChangeVelocity();
 	void Collide();

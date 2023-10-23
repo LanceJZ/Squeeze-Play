@@ -10,26 +10,33 @@ EnemyThree::~EnemyThree()
 
 bool EnemyThree::Initialize()
 {
-	Model3D::Initialize();
+	EnemyFires::Initialize();
 
 	return false;
 }
 
 bool EnemyThree::BeginRun(Camera* camera)
 {
-	Model3D::BeginRun(camera);
+	EnemyFires::BeginRun(camera);
 
 	return false;
 }
 
 void EnemyThree::Update(float deltaTime)
 {
-	Model3D::Update(deltaTime);
+	EnemyFires::Update(deltaTime);
 
 }
 
 void EnemyThree::Draw()
 {
-	Model3D::Draw();
+	EnemyFires::Draw();
+
+}
+
+void EnemyThree::Spawn()
+{
+	EnemyFires::Spawn();
+
 
 }

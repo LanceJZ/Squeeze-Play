@@ -1,7 +1,7 @@
 #pragma once
-#include "Model3D.h"
+#include "EnemyFires.h"
 
-class EnemyThree : public Model3D
+class EnemyThree : public EnemyFires
 {
 public:
 	EnemyThree();
@@ -14,5 +14,6 @@ public:
 	void Draw();
 
 private:
+	void Spawn();
 
 };
