@@ -126,3 +126,8 @@ void Enemy::Collide()
 	Score->Add(10);
 	PlaySound(HitSound);
 }
+
+void Enemy::ChasePlayer()
+{
+	RotateVelocity(ThePlayer->Position, TurnSpeed, Speed);
+}

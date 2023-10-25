@@ -41,9 +41,11 @@ void EnemyOne::Spawn()
 {
 	Enemy::Spawn();
 
-	Speed = GetRandomFloat(MaxSpeed * 0.5f, MaxSpeed);
-	TurnSpeed = GetRandomFloat(MaxTurnSpeed * 0.5f, MaxTurnSpeed);
+	float maxSpeed = 33.666;
+	float maxTurnSpeed = 0.25f;
 
+	Speed = GetRandomFloat(maxSpeed * 0.5f, maxSpeed);
+	TurnSpeed = GetRandomFloat(maxTurnSpeed * 0.5f, maxTurnSpeed);
 	Rotation = AngleFromVectorZ(ThePlayer->Position);
 }
 
@@ -52,9 +54,4 @@ void EnemyOne::Collide()
 	Enemy::Collide();
 
 	Explosions->Spawn(Position, 15.0f, 40.0f, 10, 1.5f, RED);
-}
-
-void EnemyOne::ChasePlayer()
-{
-	RotateVelocity(ThePlayer->Position, TurnSpeed, Speed);
 }

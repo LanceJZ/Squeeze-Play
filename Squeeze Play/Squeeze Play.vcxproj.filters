@@ -89,16 +89,16 @@
     <ClInclude Include="resource1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyThree.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="EnemyFires.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="EnemyThree.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnemyShotFactory.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyFires.h">
+    <ClInclude Include="Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

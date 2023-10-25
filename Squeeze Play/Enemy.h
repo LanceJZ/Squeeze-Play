@@ -27,6 +27,9 @@ public:
 	virtual void Spawn();
 
 protected:
+	float Speed = 33.666f;
+	float TurnSpeed = 0.25f;
+
 	Sound HitSound = {};
 
 	Managers* Man = {};
@@ -35,6 +38,7 @@ protected:
 	Border* Borders = {};
 
 	virtual void Collide();
+	virtual void ChasePlayer();
 
 private:
 	Color ExplodeColor = {};
