@@ -177,6 +177,10 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerShared.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayerShot.cpp" />
     <ClCompile Include="ScoreKeeper.cpp" />
   </ItemGroup>
@@ -208,6 +212,10 @@
     <ClInclude Include="EnemyTwo.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerShared.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayerShot.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="ScoreKeeper.h" />

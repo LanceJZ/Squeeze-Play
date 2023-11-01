@@ -1,7 +1,6 @@
 #pragma once
-#include "Managers.h"
 #include "Common.h"
-#include "Border.h"
+#include "PlayerShared.h"
 #include "PlayerShot.h"
 #include "ScoreKeeper.h"
 #include "ExplosionControl.h"
@@ -13,7 +12,7 @@ struct ShotandTimer
 	size_t Timer;
 };
 
-class Player : public Model3D
+class Player : public PlayerShared
 {
 public:
 	Player();
@@ -28,9 +27,7 @@ public:
 
 	std::vector<PlayerShot*> Shots;
 
-	void SetManagersRef(Managers& man);
 	void SetCameraRef(Camera& cam);
-	void SetBorderRef(Border* borders);
 	void SetScoreKeeperRef(ScoreKeeper* score);
 	void SetExplosionControlRef(ExplosionControl* explosions);
 	void SetThrustControlRef(ThrustControl* thrust);
@@ -59,13 +56,10 @@ private:
 	float ThrustSoundTime = 0;
 	float ShieldPower = 100;
 
-	Sound FireSound;
-	Sound ExplodeSound;
-	Sound ThrustSound;
-	Sound BorderHitSound;
+	Sound FireSound = {};
+	Sound ExplodeSound = {};
+	Sound ThrustSound = {};
 
-	Border* Borders = {};
-	Managers* Man = {};
 	Camera* Cam = {};
 	ScoreKeeper* Score = {};
 	ExplosionControl* Explosions = {};

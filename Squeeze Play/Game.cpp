@@ -22,7 +22,7 @@ bool Game::Initialize(Camera &camera) //Initialize
 	Explosions->SetManagers(Man);
 	Thrusts->SetCamera(Cam);
 	Thrusts->SetManagers(Man);
-	ThePlayer->SetManagersRef(Man);
+	ThePlayer->SetManagersRef(&Man);
 	ThePlayer->SetCameraRef(Cam);
 	ThePlayer->SetScoreKeeperRef(ScoreBoard);
 	ThePlayer->SetBorderRef(Borders);

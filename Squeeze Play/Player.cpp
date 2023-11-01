@@ -8,19 +8,9 @@ Player::~Player()
 {
 }
 
-void Player::SetManagersRef(Managers& man)
-{
-	Man = &man;
-}
-
 void Player::SetCameraRef(Camera& cam)
 {
 	Cam = &cam;
-}
-
-void Player::SetBorderRef(Border* borders)
-{
-	Borders = borders;
 }
 
 void Player::SetScoreKeeperRef(ScoreKeeper* score)
@@ -171,27 +161,7 @@ bool Player::GetShieldIsOff()
 
 void Player::CheckBorderHit()
 {
-	size_t borderTop = Borders->Borders[0];
-	size_t borderBottom = Borders->Borders[1];
-	size_t borderLeft = Borders->Borders[2];
-	size_t borderRight = Borders->Borders[3];
-
-	if (X() + Radius > Man->EM.Model3Ds[borderRight]->X())
-	{
-		Hit();
-	}
-
-	if (X() - Radius < Man->EM.Model3Ds[borderLeft]->X())
-	{
-		Hit();
-	}
-
-	if (Y() + Radius > Man->EM.Model3Ds[borderBottom]->Y())
-	{
-		Hit();
-	}
-
-	if (Y() - Radius < Man->EM.Model3Ds[borderTop]->Y())
+	if (PlayerShared::CheckBorderHit())
 	{
 		Hit();
 	}
@@ -219,9 +189,9 @@ void Player::Fire()
 		Shots.push_back(new PlayerShot());
 		Man->EM.AddModel3D(Shots[shotNumber]);
 		Shots[shotNumber]->SetModel(Man->CM.GetModel(ShotModelID), 20.0f);
-		Shots[shotNumber]->SetManagersRef(Man->EM);
+		Shots[shotNumber]->SetManagersRef(Man);
 		Shots[shotNumber]->SetBorderRef(Borders);
-		Shots[shotNumber]->SetSound(BorderHitSound);
+		Shots[shotNumber]->SetBorderSound(BorderHitSound);
 		Shots[shotNumber]->BeginRun(Cam);
 	}
 
