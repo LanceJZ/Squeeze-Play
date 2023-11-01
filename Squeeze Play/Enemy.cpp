@@ -56,7 +56,7 @@ void Enemy::Update(float deltaTime)
 {
 	Model3D::Update(deltaTime);
 
-	if (CheckCollision()) Collide();
+	if (CheckCollisionPlayerShot() || CheckCollision()) Collide();
 }
 
 void Enemy::Draw()
@@ -115,15 +115,8 @@ void Enemy::Spawn(Vector3 position, float rotation, Vector3 velocity)
 	Enabled = true;
 }
 
-bool Enemy::CheckCollision()
+bool Enemy::CheckCollisionPlayerShot()
 {
-	if (CirclesIntersect(*ThePlayer) && ThePlayer->Enabled)
-	{
-		ThePlayer->Hit();
-
-		return true;
-	}
-
 	for (auto &shot : ThePlayer->Shots)
 	{
 		if (CirclesIntersect(*shot) && shot->Enabled)
@@ -134,6 +127,16 @@ bool Enemy::CheckCollision()
 	}
 
 	return false;
+}
+
+bool Enemy::CheckCollision()
+{
+	if (CirclesIntersect(*ThePlayer) && ThePlayer->Enabled)
+	{
+		ThePlayer->Hit();
+
+		return true;
+	}
 }
 
 void Enemy::Collide()

@@ -39,6 +39,7 @@ protected:
 	ExplosionControl* Explosions = {};
 	Border* Borders = {};
 
+	virtual bool CheckCollision();
 	virtual void Collide();
 	virtual void ChasePlayer();
 
@@ -47,5 +48,5 @@ private:
 
 	ScoreKeeper* Score = {};
 
-	bool CheckCollision();
+	bool CheckCollisionPlayerShot();
 };

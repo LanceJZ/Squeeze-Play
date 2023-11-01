@@ -63,10 +63,7 @@ void EnemyShot::Spawn(Vector3 position, Vector3 velocity, float timerAmount)
 
 bool EnemyShot::CheckCollision()
 {
-	if (CirclesIntersect(*ThePlayer) && Enabled)
-	{
-		return true;
-	}
+	Enemy::CheckCollision();
 
 	return false;
 }
@@ -75,5 +72,4 @@ void EnemyShot::Collide()
 {
 	Enabled = false;
 	X(WindowWidth + 50);
-	ThePlayer->Hit();
 }
