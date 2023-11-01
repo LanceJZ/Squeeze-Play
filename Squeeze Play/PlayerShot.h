@@ -3,7 +3,7 @@
 #include "Managers.h"
 #include "Border.h"
 
-class PlayerShot : public Model3D
+class PlayerShot : public Model3D //TODO: Convert to use Enemy class.
 {
 public:
 	PlayerShot();

@@ -25,6 +25,7 @@ public:
 	virtual void Draw();
 
 	virtual void Spawn();
+	void Spawn(Vector3 position, float rotation, float speed, float turnSpeed);
 
 protected:
 	float Speed = 33.666f;

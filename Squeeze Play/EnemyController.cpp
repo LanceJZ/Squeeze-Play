@@ -43,9 +43,19 @@ void EnemyController::SetShipTwoModelID(size_t modelID)
 	ShipTwoModelID = modelID;
 }
 
+void EnemyController::SetShipThreeModelID(size_t modelID)
+{
+	ShipThreeModelID = modelID;
+}
+
 void EnemyController::SetShotModelID(size_t modelID)
 {
 	ShotModelID = modelID;
+}
+
+void EnemyController::SetMissileModelID(size_t modelID)
+{
+	MissileModelID = modelID;
 }
 
 void EnemyController::SetSounds(Sound oneHit, Sound twoHit, Sound twoFire)

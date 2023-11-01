@@ -108,5 +108,5 @@ void EnemyTwo::Fire()
 	float angle = AngleFromVectorZ(ThePlayer->Position);
 	Vector3 vel = GetVelocityFromAngleZ(angle, 100.0f);
 
-	ESF->Spawn(Position, vel, 5.0f, ShotModelID);
+	ESF->SpawnShot(Position, vel, 5.0f, ShotModelID);
 }

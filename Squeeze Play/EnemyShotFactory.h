@@ -2,6 +2,7 @@
 #include "Common.h"
 #include "Managers.h"
 #include "EnemyShot.h"
+#include "EnemyMissile.h"
 
 class EnemyShotFactory : public Common
 {
@@ -10,6 +11,7 @@ public:
 	virtual ~EnemyShotFactory();
 
 	std::vector<EnemyShot*> Shots;
+	std::vector<EnemyMissile*> Missiles;
 
 	void SetManagersRef(Managers* man);
 	void SetPlayerRef(Player* player);
@@ -22,7 +24,10 @@ public:
 	void Update();
 	void Draw();
 
-	void Spawn(Vector3 position, Vector3 velocity, float timer, size_t shotModel);
+	void SpawnShot(Vector3 position, Vector3 velocity, float timer,
+		size_t shotModelID);
+	void SpawnMissile(Vector3 position, float rotation, float speed,
+		float targeting, size_t missileModelID);
 	void Reset();
 
 private:

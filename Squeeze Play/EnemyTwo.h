@@ -18,7 +18,7 @@ public:
 private:
 	size_t DistanceTimerID = 0;
 	float Speed = 22.666f;
-	float MaxSpeed = 52.666;
+	float MaxSpeed = 52.666f;
 
 	void ChangeVelocity();
 	void Collide();

@@ -98,6 +98,14 @@ void Enemy::Spawn()
 	Y(y);
 }
 
+void Enemy::Spawn(Vector3 position, float rotation, float speed, float turnSpeed)
+{
+	Position = position;
+	Rotation = rotation;
+	Speed = speed;
+	TurnSpeed = turnSpeed;
+}
+
 bool Enemy::CheckCollision()
 {
 	if (CirclesIntersect(*ThePlayer) && ThePlayer->Enabled)

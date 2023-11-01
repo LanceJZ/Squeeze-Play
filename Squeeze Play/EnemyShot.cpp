@@ -60,7 +60,7 @@ void EnemyShot::Draw()
 
 }
 
-void EnemyShot::Spawn(Vector3 pos, Vector3 vel, size_t timerAmount)
+void EnemyShot::Spawn(Vector3 pos, Vector3 vel, float timerAmount)
 {
 	Position = pos;
 	Position.z = 10;

@@ -41,7 +41,7 @@ void EnemyOne::Spawn()
 {
 	Enemy::Spawn();
 
-	float maxSpeed = 33.666;
+	float maxSpeed = 33.666f;
 	float maxTurnSpeed = 0.25f;
 
 	Speed = GetRandomFloat(maxSpeed * 0.5f, maxSpeed);

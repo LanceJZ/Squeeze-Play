@@ -58,7 +58,9 @@ bool Game::Load()
 	ThePlayer->SetShotModelID(Man.CM.LoadTheModel("PlayerShot"));
 	Enemies->SetShipOneModelID(Man.CM.LoadTheModel("EnemyOne"));
 	Enemies->SetShipTwoModelID(Man.CM.LoadTheModel("EnemyTwo"));
+	Enemies->SetShipThreeModelID(Man.CM.LoadTheModel("EnemyThree"));
 	Enemies->SetShotModelID(Man.CM.LoadTheModel("EnemyShot"));
+	Enemies->SetMissileModelID(Man.CM.LoadTheModel("MissileModel"));
 	Borders->SetBorderModelID(Man.CM.LoadTheModel("Border"));
 
 	// Load Sounds.
@@ -89,8 +91,6 @@ bool Game::BeginRun()
 
 void Game::ProcessInput()
 {
-	Man.EM.Input();
-
 	if (State == MainMenu)
 	{
 		if (IsGamepadAvailable(0))
@@ -110,6 +110,8 @@ void Game::ProcessInput()
 		{
 
 		}
+
+		return;
 	}
 
 	if (State == InPlay)
@@ -152,7 +154,11 @@ void Game::ProcessInput()
 				State = InPlay;
 			}
 		}
+
+		return;
 	}
+
+	Man.EM.Input();
 }
 
 

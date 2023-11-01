@@ -12,11 +12,11 @@ public:
 	void SetShotModelID(size_t modelID);
 	void SetSounds(Sound hit, Sound fire);
 
-	bool Initialize();
-	bool BeginRun(Camera* camera);
+	virtual bool Initialize();
+	virtual bool BeginRun(Camera* camera);
 
-	void Update(float deltaTime);
-	void Draw();
+	virtual void Update(float deltaTime);
+	virtual void Draw();
 
 protected:
 	size_t FireTimerID = 0;

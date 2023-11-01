@@ -51,8 +51,8 @@ void EnemyShotFactory::Draw()
 
 }
 
-void EnemyShotFactory::Spawn(Vector3 position, Vector3 velocity, float timer,
-	size_t shotModel)
+void EnemyShotFactory::SpawnShot(Vector3 position, Vector3 velocity, float timer,
+	size_t shotModelID)
 {
 	bool spawnShot = true;
 	size_t shotNumber = Shots.size();
@@ -71,13 +71,42 @@ void EnemyShotFactory::Spawn(Vector3 position, Vector3 velocity, float timer,
 	{
 		Shots.push_back(new EnemyShot());
 		Man->EM.AddModel3D(Shots[shotNumber]);
-		Shots[shotNumber]->SetModel(Man->CM.GetModel(shotModel), 3.75f);
+		Shots[shotNumber]->SetModel(Man->CM.GetModel(shotModelID), 3.75f);
 		Shots[shotNumber]->SetManagersRef(Man->EM);
 		Shots[shotNumber]->SetPlayerRef(ThePlayer);
 		Shots[shotNumber]->BeginRun(Cam);
 	}
 
 	Shots[shotNumber]->Spawn(position, velocity, timer);
+}
+
+void EnemyShotFactory::SpawnMissile(Vector3 position, float rotation,
+	float speed, float targeting, size_t missileModelID)
+{
+	bool spawnMissile = true;
+	size_t missileNumber = Missiles.size();
+
+	for (size_t missileCheck = 0; missileCheck < missileNumber; missileCheck++)
+	{
+		if (!Missiles[missileCheck]->Enabled)
+		{
+			spawnMissile = false;
+			missileNumber = missileCheck;
+			break;
+		}
+	}
+
+	if (spawnMissile)
+	{
+		Missiles.push_back(new EnemyMissile());
+		Man->EM.AddModel3D(Missiles[missileNumber]);
+		Missiles[missileNumber]->SetModel(Man->CM.GetModel(missileModelID), 1.0f);
+		Missiles[missileNumber]->SetManagersRef(Man);
+		Missiles[missileNumber]->SetPlayerRef(ThePlayer);
+		Missiles[missileNumber]->BeginRun(Cam);
+	}
+
+	Missiles[missileNumber]->Spawn(position, rotation, speed, targeting);
 }
 
 void EnemyShotFactory::Reset()

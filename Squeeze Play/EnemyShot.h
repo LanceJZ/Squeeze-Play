@@ -4,7 +4,7 @@
 #include "Border.h"
 #include "Player.h"
 
-class EnemyShot : public Model3D
+class EnemyShot : public Model3D //TODO: Convert to use Enemy class.
 {
 public:
 	EnemyShot();
@@ -20,7 +20,7 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-	void Spawn(Vector3 pos, Vector3 vel, size_t timerAmount);
+	void Spawn(Vector3 pos, Vector3 vel, float timerAmount);
 
 private:
 	size_t ShotTimerID = 0;
