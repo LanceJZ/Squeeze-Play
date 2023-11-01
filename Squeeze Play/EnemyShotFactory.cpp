@@ -72,7 +72,7 @@ void EnemyShotFactory::SpawnShot(Vector3 position, Vector3 velocity, float timer
 		Shots.push_back(new EnemyShot());
 		Man->EM.AddModel3D(Shots[shotNumber]);
 		Shots[shotNumber]->SetModel(Man->CM.GetModel(shotModelID), 3.75f);
-		Shots[shotNumber]->SetManagersRef(Man->EM);
+		Shots[shotNumber]->SetManagersRef(Man);
 		Shots[shotNumber]->SetPlayerRef(ThePlayer);
 		Shots[shotNumber]->BeginRun(Cam);
 	}

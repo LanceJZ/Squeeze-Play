@@ -8,21 +8,6 @@ EnemyShot::~EnemyShot()
 {
 }
 
-void EnemyShot::SetManagersRef(EntityManager& man)
-{
-	Man = &man;
-}
-
-void EnemyShot::SetPlayerRef(Player* player)
-{
-	ThePlayer = player;
-}
-
-void EnemyShot::SetBorderRef(Border* borders)
-{
-	Borders = borders;
-}
-
 bool EnemyShot::Initialize()
 {
 	Model3D::Initialize();
@@ -37,7 +22,7 @@ bool EnemyShot::BeginRun(Camera* camera)
 {
 	Model3D::BeginRun(camera);
 
-	ShotTimerID = Man->AddTimer();
+	ShotTimerID = Man->EM.AddTimer();
 
 	return false;
 }
@@ -46,7 +31,7 @@ void EnemyShot::Update(float deltaTime)
 {
 	Model3D::Update(deltaTime);
 
-	if (Man->Timers[ShotTimerID]->Elapsed())
+	if (Man->EM.Timers[ShotTimerID]->Elapsed())
 	{
 		Enabled = false;
 	}
@@ -56,17 +41,17 @@ void EnemyShot::Update(float deltaTime)
 
 void EnemyShot::Draw()
 {
-	Model3D::Draw();
+	Enemy::Draw();
 
 }
 
-void EnemyShot::Spawn(Vector3 pos, Vector3 vel, float timerAmount)
+void EnemyShot::Spawn(Vector3 position, Vector3 velocity, float timerAmount)
 {
-	Position = pos;
-	Position.z = 10;
-	Enabled = true;
+	Enemy::Spawn(position, 0, velocity);
 
-	Man->Timers[ShotTimerID]->Reset(timerAmount);
+	Position.z = 10;
+
+	Man->EM.Timers[ShotTimerID]->Reset(timerAmount);
 
 	float range = 1.5f;
 	float rX = GetRandomFloat(-range, range);
@@ -74,7 +59,6 @@ void EnemyShot::Spawn(Vector3 pos, Vector3 vel, float timerAmount)
 	float rZ = GetRandomFloat(-range, range);
 	RotationAxis = { rX, rY, rZ };
 	RotationVelocity = GetRandomFloat(1.5f, 3.5f);
-	Velocity = vel;
 }
 
 bool EnemyShot::CheckCollision()

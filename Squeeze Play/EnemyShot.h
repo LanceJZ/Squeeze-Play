@@ -1,18 +1,11 @@
 #pragma once
-#include "Model3D.h"
-#include "Managers.h"
-#include "Border.h"
-#include "Player.h"
+#include "Enemy.h"
 
-class EnemyShot : public Model3D //TODO: Convert to use Enemy class.
+class EnemyShot : public Enemy
 {
 public:
 	EnemyShot();
 	virtual ~EnemyShot();
-
-	void SetManagersRef(EntityManager& man);
-	void SetPlayerRef(Player* player);
-	void SetBorderRef(Border* borders);
 
 	bool Initialize();
 	bool BeginRun(Camera* camera);
@@ -24,9 +17,6 @@ public:
 
 private:
 	size_t ShotTimerID = 0;
-	EntityManager* Man = {};
-	Player* ThePlayer = {};
-	Border* Borders = {};
 
 	bool CheckCollision();
 	void Collide();

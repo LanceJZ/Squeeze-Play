@@ -104,6 +104,7 @@ void Enemy::Spawn(Vector3 position, float rotation, float speed, float turnSpeed
 	Rotation = rotation;
 	Speed = speed;
 	TurnSpeed = turnSpeed;
+	Enabled = true;
 }
 
 void Enemy::Spawn(Vector3 position, float rotation, Vector3 velocity)
@@ -111,6 +112,7 @@ void Enemy::Spawn(Vector3 position, float rotation, Vector3 velocity)
 	Position = position;
 	Rotation = rotation;
 	Velocity = velocity;
+	Enabled = true;
 }
 
 bool Enemy::CheckCollision()
