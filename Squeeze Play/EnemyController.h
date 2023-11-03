@@ -63,5 +63,6 @@ private:
 
 	void SpawnOne(size_t count);
 	void SpawnTwo(size_t count);
+	void SpawnThree(size_t count);
 };
 

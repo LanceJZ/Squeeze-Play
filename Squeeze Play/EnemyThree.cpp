@@ -26,6 +26,7 @@ void EnemyThree::Update(float deltaTime)
 {
 	EnemyFires::Update(deltaTime);
 
+	ChasePlayer();
 }
 
 void EnemyThree::Draw()
@@ -38,5 +39,11 @@ void EnemyThree::Spawn()
 {
 	EnemyFires::Spawn();
 
+	float maxSpeed = 26.666f;
+	float maxTurnSpeed = 0.15f;
+
+	Speed = GetRandomFloat(maxSpeed * 0.5f, maxSpeed);
+	TurnSpeed = GetRandomFloat(maxTurnSpeed * 0.5f, maxTurnSpeed);
+	Rotation = AngleFromVectorZ(ThePlayer->Position);
 
 }

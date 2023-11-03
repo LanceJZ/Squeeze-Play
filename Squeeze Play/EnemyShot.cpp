@@ -63,7 +63,7 @@ void EnemyShot::Spawn(Vector3 position, Vector3 velocity, float timerAmount)
 
 bool EnemyShot::CheckCollision()
 {
-	Enemy::CheckCollision();
+	if (Enemy::CheckCollision()) return true;
 
 	return false;
 }

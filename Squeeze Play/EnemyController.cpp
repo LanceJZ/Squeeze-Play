@@ -98,6 +98,11 @@ void EnemyController::Update()
 		{
 			SpawnTwo(2);
 		}
+
+		if (WaveOne > 10)
+		{
+			SpawnThree(1);
+		}
 	}
 
 }
@@ -117,6 +122,11 @@ void EnemyController::Reset()
 	for (auto two : Twos)
 	{
 		two->Enabled = false;
+	}
+
+	for (auto three : Threes)
+	{
+		three->Enabled = false;
 	}
 
 	ESF.Reset();
@@ -193,5 +203,40 @@ void EnemyController::SpawnTwo(size_t count)
 		}
 
 		Twos[twoNumber]->Spawn();
+	}
+}
+
+void EnemyController::SpawnThree(size_t count)
+{
+	for (int three = 0; three < count; three++)
+	{
+		bool spawnNewThree = true;
+		size_t threeNumber = Threes.size();
+
+		for (size_t threeCheck = 0; threeCheck < threeNumber; threeCheck++)
+		{
+			if (!Threes[threeCheck]->Enabled)
+			{
+				spawnNewThree = false;
+				threeNumber = threeCheck;
+				break;
+			}
+		}
+
+		if (spawnNewThree)
+		{
+			Threes.push_back(new EnemyThree());
+			Threes[threeNumber]->SetManagersRef(Man);
+			Threes[threeNumber]->SetShotModelID(MissileModelID);
+			Threes[threeNumber]->SetPlayerRef(ThePlayer);
+			Threes[threeNumber]->SetBorderRef(Borders);
+			Threes[threeNumber]->SetScoreKeeperRef(Score);
+			Threes[threeNumber]->SetExplosionControlRef(Explosions);
+			Threes[threeNumber]->SetEnemyShotFactoryRef(&ESF);
+			Man->EM.AddModel3D(Threes[threeNumber],
+				Man->CM.GetModel(ShipThreeModelID), 15, Cam);
+		}
+
+		Threes[threeNumber]->Spawn();
 	}
 }

@@ -13,7 +13,8 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-private:
 	void Spawn();
+
+private:
 
 };
