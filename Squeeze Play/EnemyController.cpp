@@ -92,14 +92,14 @@ void EnemyController::Update()
 	if (Man->EM.Timers[SpawnTimerID]->Elapsed())
 	{
 		Man->EM.Timers[SpawnTimerID]->Reset();
-		SpawnOne(5);
+		SpawnOne(4);
 
-		if (WaveOne > 5)
+		if (WaveOne > 2)
 		{
 			SpawnTwo(2);
 		}
 
-		if (WaveOne > 10)
+		if (WaveOne > 3)
 		{
 			SpawnThree(1);
 		}

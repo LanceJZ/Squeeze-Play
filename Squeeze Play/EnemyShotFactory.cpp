@@ -24,6 +24,16 @@ void EnemyShotFactory::SetCameraRef(Camera* camera)
 	Cam = camera;
 }
 
+void EnemyShotFactory::SetBorderRef(Border* borders)
+{
+	Borders = borders;
+}
+
+void EnemyShotFactory::SetScoreKeeperRef(ScoreKeeper* score)
+{
+	Score = score;
+}
+
 bool EnemyShotFactory::Initialize()
 {
 
@@ -100,8 +110,10 @@ void EnemyShotFactory::SpawnMissile(Vector3 position, float rotation,
 	{
 		Missiles.push_back(new EnemyMissile());
 		Man->EM.AddModel3D(Missiles[missileNumber]);
-		Missiles[missileNumber]->SetModel(Man->CM.GetModel(missileModelID), 1.0f);
+		Missiles[missileNumber]->SetModel(Man->CM.GetModel(missileModelID), 12.75f);
 		Missiles[missileNumber]->SetManagersRef(Man);
+		Missiles[missileNumber]->SetBorderRef(Borders);
+		Missiles[missileNumber]->SetScoreKeeperRef(Score);
 		Missiles[missileNumber]->SetPlayerRef(ThePlayer);
 		Missiles[missileNumber]->BeginRun(Cam);
 	}

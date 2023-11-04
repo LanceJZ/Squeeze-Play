@@ -106,6 +106,8 @@ void Player::Draw()
 
 void Player::Hit()
 {
+	return;
+
 	Explosions->Spawn(Position, 20.0f, 50.0f, 25, 2.5f, BLUE);
 	PlaySound(ExplodeSound);
 

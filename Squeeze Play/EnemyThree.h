@@ -16,5 +16,5 @@ public:
 	void Spawn();
 
 private:
-
+	void Fire();
 };

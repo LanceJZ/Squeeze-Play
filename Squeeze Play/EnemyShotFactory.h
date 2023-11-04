@@ -16,6 +16,8 @@ public:
 	void SetManagersRef(Managers* man);
 	void SetPlayerRef(Player* player);
 	void SetCameraRef(Camera* camera);
+	void SetBorderRef(Border* borders);
+	void SetScoreKeeperRef(ScoreKeeper* score);
 
 	bool Initialize();
 	bool BeginRun();
@@ -34,5 +36,7 @@ private:
 	Managers* Man = {};
 	Player* ThePlayer = {};
 	Camera* Cam = {};
+	Border* Borders = {};
+	ScoreKeeper* Score = {};
 };
 

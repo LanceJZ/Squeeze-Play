@@ -25,6 +25,10 @@ protected:
 	Sound FireSound = {};
 	EnemyShotFactory* ESF = {};
 
+	void Fire(Vector3 position, Vector3 velocity, float timer);
+	void Fire(Vector3 position, float rotation, float speed, float targeting);
+
+
 private:
 
 };

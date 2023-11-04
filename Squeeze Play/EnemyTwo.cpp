@@ -103,10 +103,8 @@ void EnemyTwo::Collide()
 
 void EnemyTwo::Fire()
 {
-	PlaySound(FireSound);
-
 	float angle = AngleFromVectorZ(ThePlayer->Position);
 	Vector3 vel = GetVelocityFromAngleZ(angle, 100.0f);
 
-	ESF->SpawnShot(Position, vel, 5.0f, ShotModelID);
+	EnemyFires::Fire(Position, vel, 5.0f);
 }

@@ -52,3 +52,15 @@ void EnemyFires::Draw()
 	Enemy::Draw();
 
 }
+
+void EnemyFires::Fire(Vector3 position, Vector3 velocity, float timer)
+{
+	PlaySound(FireSound);
+
+	ESF->SpawnShot(position, velocity, timer, ShotModelID);
+}
+
+void EnemyFires::Fire(Vector3 position, float rotation, float speed, float targeting)
+{
+	ESF->SpawnMissile(position, rotation, speed, targeting, ShotModelID);
+}

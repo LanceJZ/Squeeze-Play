@@ -12,6 +12,7 @@ bool EnemyThree::Initialize()
 {
 	EnemyFires::Initialize();
 
+
 	return false;
 }
 
@@ -19,12 +20,23 @@ bool EnemyThree::BeginRun(Camera* camera)
 {
 	EnemyFires::BeginRun(camera);
 
+	Man->EM.Timers[FireTimerID]->Reset(10.0f);
+	ESF->SetBorderRef(Borders);
+	ESF->SetScoreKeeperRef(Score);
+
 	return false;
 }
 
 void EnemyThree::Update(float deltaTime)
 {
 	EnemyFires::Update(deltaTime);
+
+	if (Man->EM.Timers[FireTimerID]->Elapsed())
+	{
+		float time = GetRandomFloat(15.15f, 23.15f);
+		Man->EM.Timers[FireTimerID]->Reset(time);
+		Fire();
+	}
 
 	ChasePlayer();
 }
@@ -46,4 +58,9 @@ void EnemyThree::Spawn()
 	TurnSpeed = GetRandomFloat(maxTurnSpeed * 0.5f, maxTurnSpeed);
 	Rotation = AngleFromVectorZ(ThePlayer->Position);
 
+}
+
+void EnemyThree::Fire()
+{
+	EnemyFires::Fire(Position, Rotation, 40.0f, 10.0f);
 }

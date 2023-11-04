@@ -60,7 +60,7 @@ bool Game::Load()
 	Enemies->SetShipTwoModelID(Man.CM.LoadTheModel("EnemyTwo"));
 	Enemies->SetShipThreeModelID(Man.CM.LoadTheModel("EnemyThree"));
 	Enemies->SetShotModelID(Man.CM.LoadTheModel("EnemyShot"));
-	Enemies->SetMissileModelID(Man.CM.LoadTheModel("MissileModel"));
+	Enemies->SetMissileModelID(Man.CM.LoadTheModel("EnemyMissile"));
 	Borders->SetBorderModelID(Man.CM.LoadTheModel("Border"));
 
 	// Load Sounds.
