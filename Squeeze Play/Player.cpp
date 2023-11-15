@@ -188,7 +188,7 @@ void Player::Fire()
 
 	if (spawnNewShot)
 	{
-		Shots.push_back(new PlayerShot());
+		Shots.push_back(DBG_NEW PlayerShot());
 		Man->EM.AddModel3D(Shots[shotNumber]);
 		Shots[shotNumber]->SetModel(Man->CM.GetModel(ShotModelID), 20.0f);
 		Shots[shotNumber]->SetManagersRef(Man);

@@ -153,7 +153,7 @@ void EnemyController::SpawnOne(size_t count)
 
 		if (spawnNewOne)
 		{
-			Ones.push_back(new EnemyOne());
+			Ones.push_back(DBG_NEW EnemyOne());
 			Ones[oneNumber]->SetManagersRef(Man);
 			Ones[oneNumber]->SetPlayerRef(ThePlayer);
 			Ones[oneNumber]->SetBorderRef(Borders);
@@ -189,7 +189,7 @@ void EnemyController::SpawnTwo(size_t count)
 
 		if (spawnNewTwo)
 		{
-			Twos.push_back(new EnemyTwo());
+			Twos.push_back(DBG_NEW EnemyTwo());
 			Twos[twoNumber]->SetManagersRef(Man);
 			Twos[twoNumber]->SetShotModelID(ShotModelID);
 			Twos[twoNumber]->SetPlayerRef(ThePlayer);
@@ -225,7 +225,7 @@ void EnemyController::SpawnThree(size_t count)
 
 		if (spawnNewThree)
 		{
-			Threes.push_back(new EnemyThree());
+			Threes.push_back(DBG_NEW EnemyThree());
 			Threes[threeNumber]->SetManagersRef(Man);
 			Threes[threeNumber]->SetShotModelID(MissileModelID);
 			Threes[threeNumber]->SetPlayerRef(ThePlayer);

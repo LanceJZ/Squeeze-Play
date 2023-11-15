@@ -1,3 +1,10 @@
+#pragma warning ( push )
+#pragma warning ( disable : 26495 )
+
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 #include "raylib.h"
 #include "Game.h"
 

@@ -79,7 +79,7 @@ void EnemyShotFactory::SpawnShot(Vector3 position, Vector3 velocity, float timer
 
 	if (spawnShot)
 	{
-		Shots.push_back(new EnemyShot());
+		Shots.push_back(DBG_NEW EnemyShot());
 		Man->EM.AddModel3D(Shots[shotNumber]);
 		Shots[shotNumber]->SetModel(Man->CM.GetModel(shotModelID), 3.75f);
 		Shots[shotNumber]->SetManagersRef(Man);
@@ -108,7 +108,7 @@ void EnemyShotFactory::SpawnMissile(Vector3 position, float rotation,
 
 	if (spawnMissile)
 	{
-		Missiles.push_back(new EnemyMissile());
+		Missiles.push_back(DBG_NEW EnemyMissile());
 		Man->EM.AddModel3D(Missiles[missileNumber]);
 		Missiles[missileNumber]->SetModel(Man->CM.GetModel(missileModelID), 12.75f);
 		Missiles[missileNumber]->SetManagersRef(Man);

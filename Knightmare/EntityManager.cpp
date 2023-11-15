@@ -137,7 +137,7 @@ size_t EntityManager::AddEntity(Entity* entity)
 size_t EntityManager::AddEntity()
 {
 	size_t entityNumber = Entities.size();
-	Entity* newEntity = new Entity();
+	Entity* newEntity = DBG_NEW Entity();
 	Entities.push_back(newEntity);
 	Entities[entityNumber]->Initialize();
 
@@ -158,7 +158,7 @@ size_t EntityManager::AddLineModel(LineModelPoints model)
 {
 	size_t number = LineModels.size();
 
-	LineModels.push_back(new LineModel());
+	LineModels.push_back(DBG_NEW LineModel());
 	LineModels[number]->SetModel(model);
 	LineModels[number]->Initialize();
 
@@ -169,7 +169,7 @@ size_t EntityManager::AddLineModel()
 {
 	size_t number = LineModels.size();
 
-	LineModels.push_back(new LineModel());
+	LineModels.push_back(DBG_NEW LineModel());
 	LineModels[number]->Initialize();
 
 	return number;
@@ -222,7 +222,7 @@ size_t EntityManager::AddModel3D(Model3D* model3D, Model model, float scale, Cam
 size_t EntityManager::AddModel3D(Model model)
 {
 	size_t modelNumber = Model3Ds.size();
-	Model3Ds.push_back(new Model3D());
+	Model3Ds.push_back(DBG_NEW Model3D());
 	Model3Ds[modelNumber]->SetModel(model, 1.0f);
 	Model3Ds[modelNumber]->Initialize();
 
@@ -248,7 +248,7 @@ size_t EntityManager::AddModel3D(Model model, float scale, Camera* camera)
 size_t EntityManager::AddTimer()
 {
 	size_t timerNumber = Timers.size();
-	Timers.push_back(new Timer());
+	Timers.push_back(DBG_NEW Timer());
 
 	return timerNumber;
 }
@@ -272,7 +272,7 @@ size_t EntityManager::AddCommon(Common* common)
 
 Entity* EntityManager::CreateEntity()
 {
-	Entity* newEntity = new Entity();
+	Entity* newEntity = DBG_NEW Entity();
 	Entities.push_back(newEntity);
 	newEntity->Initialize();
 	newEntity->BeginRun();
@@ -282,7 +282,7 @@ Entity* EntityManager::CreateEntity()
 
 LineModel* EntityManager::CreateLineModel()
 {
-	LineModel* newLineModel = new LineModel();
+	LineModel* newLineModel = DBG_NEW LineModel();
 	LineModels.push_back(newLineModel);
 	newLineModel->Initialize();
 	newLineModel->BeginRun();
@@ -292,7 +292,7 @@ LineModel* EntityManager::CreateLineModel()
 
 Model3D* EntityManager::CreateModel3D(Model model, Camera* camera)
 {
-	Model3D* newModel3D = new Model3D();
+	Model3D* newModel3D = DBG_NEW Model3D();
 	Model3Ds.push_back(newModel3D);
 	newModel3D->SetModel(model, 1.0f);
 	newModel3D->Initialize();
