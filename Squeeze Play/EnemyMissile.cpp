@@ -12,6 +12,9 @@ bool EnemyMissile::Initialize()
 {
 	Enemy::Initialize();
 
+	Cull = false;
+	Radius = 5;
+
 	return false;
 }
 

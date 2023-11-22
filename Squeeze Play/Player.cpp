@@ -8,11 +8,6 @@ Player::~Player()
 {
 }
 
-void Player::SetCameraRef(Camera& cam)
-{
-	Cam = &cam;
-}
-
 void Player::SetScoreKeeperRef(ScoreKeeper* score)
 {
 	Score = score;
@@ -52,18 +47,20 @@ void Player::SetShotModelID(size_t modelID)
 
 bool Player::Initialize()
 {
-	Model3D::Initialize();
+	PlayerShared::Initialize();
+
 	Cull = false;
-	Radius = 20;
+	Radius = 20.0f;
 	Enabled = true;
 	return false;
 }
 
 bool Player::BeginRun(Camera* camera)
 {
-	Model3D::BeginRun(camera);
+	PlayerShared::BeginRun(camera);
 
 	SetModel(Man->CM.GetModel(ShipModelID), 15.0f);
+	FireTimerID = Man->EM.AddTimer(0.25f);
 
 	return false;
 }
@@ -82,7 +79,7 @@ void Player::Input()
 
 void Player::Update(float deltaTime)
 {
-	Model3D::Update(deltaTime);
+	PlayerShared::Update(deltaTime);
 
 	if (!ThrustIsOn)
 	{
@@ -100,7 +97,7 @@ void Player::Update(float deltaTime)
 
 void Player::Draw()
 {
-	Model3D::Draw();
+	PlayerShared::Draw();
 
 }
 
@@ -307,6 +304,15 @@ void Player::Keyboard()
 		IsKeyPressed(KEY_SPACE))
 	{
 		Fire();
+	}
+	else if (IsKeyDown(KEY_RIGHT_CONTROL) || IsKeyDown(KEY_LEFT_CONTROL) ||
+		IsKeyDown(KEY_SPACE))
+	{
+		if (Man->EM.Timers[FireTimerID]->Elapsed())
+		{
+			Man->EM.Timers[FireTimerID]->Reset();
+			Fire();
+		}
 	}
 
 	if (IsKeyDown(KEY_DOWN))

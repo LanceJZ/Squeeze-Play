@@ -12,6 +12,8 @@ bool EnemyThree::Initialize()
 {
 	EnemyFires::Initialize();
 
+	Radius = 20.0f;
+	Cull = false;
 
 	return false;
 }

@@ -22,6 +22,7 @@ public:
 protected:
 	Sound BorderHitSound = {};
 
+	Camera* Cam = {};
 	Managers* Man = {};
 	Border* Borders = {};
 

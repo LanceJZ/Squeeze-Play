@@ -23,7 +23,6 @@ bool Game::Initialize(Camera &camera) //Initialize
 	Thrusts->SetCamera(Cam);
 	Thrusts->SetManagers(Man);
 	ThePlayer->SetManagersRef(&Man);
-	ThePlayer->SetCameraRef(Cam);
 	ThePlayer->SetScoreKeeperRef(ScoreBoard);
 	ThePlayer->SetBorderRef(Borders);
 	ThePlayer->SetExplosionControlRef(Explosions);
@@ -83,6 +82,7 @@ bool Game::BeginRun()
 	//Any Entities added after this point need this method fired manually,
 	//and have camera added as well.
 	Man.BeginRun(&Cam);
+	ThePlayer->BeginRun(&Cam);
 
 	NewGame();
 

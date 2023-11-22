@@ -27,7 +27,6 @@ public:
 
 	std::vector<PlayerShot*> Shots;
 
-	void SetCameraRef(Camera& cam);
 	void SetScoreKeeperRef(ScoreKeeper* score);
 	void SetExplosionControlRef(ExplosionControl* explosions);
 	void SetThrustControlRef(ThrustControl* thrust);
@@ -52,6 +51,7 @@ private:
 	bool ThrustIsOn = false;
 	size_t ShipModelID = 0;
 	size_t ShotModelID = 0;
+	size_t FireTimerID = 0;
 	int NextNewLifeScore = 10000;
 	float ThrustSoundTime = 0;
 	float ShieldPower = 100;
@@ -60,7 +60,6 @@ private:
 	Sound ExplodeSound = {};
 	Sound ThrustSound = {};
 
-	Camera* Cam = {};
 	ScoreKeeper* Score = {};
 	ExplosionControl* Explosions = {};
 	ThrustControl* Thrust = {};

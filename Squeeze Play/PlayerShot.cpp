@@ -11,6 +11,7 @@ PlayerShot::~PlayerShot()
 bool PlayerShot::Initialize()
 {
 	PlayerShared::Initialize();
+
 	Cull = false;
 	Radius = 5;
 

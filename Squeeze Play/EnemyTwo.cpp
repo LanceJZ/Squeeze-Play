@@ -12,7 +12,7 @@ bool EnemyTwo::Initialize()
 {
 	EnemyFires::Initialize();
 
-	Radius = 18;
+	Radius = 18.0f;
 	Cull = false;
 
 	return false;

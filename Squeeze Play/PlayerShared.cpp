@@ -34,6 +34,8 @@ bool PlayerShared::BeginRun(Camera* camera)
 {
 	Model3D::BeginRun(camera);
 
+	Cam = camera;
+
 	return false;
 }
 

@@ -62,8 +62,10 @@ Vector3 PositionedObject::VelocityFromAngleZ(float magnitude)
 //Returns Vector3 acceleration based on acceleration amount this frame, to a max amount.
 Vector3 PositionedObject::AccelerationToMaxAtRotation(float accelerationAmount, float topSpeed, float deltaTime)
 {
-	return { ((cos(Rotation) - (Velocity.x * topSpeed)) * accelerationAmount) * deltaTime,
-			((sin(Rotation) - (Velocity.y * topSpeed)) * accelerationAmount) * deltaTime, 0 };
+	return { ((cosf(Rotation) - (Velocity.x * topSpeed)) *
+		accelerationAmount) * deltaTime,
+			((sinf(Rotation) - (Velocity.y * topSpeed)) *
+				accelerationAmount) * deltaTime, 0 };
 }
 //Returns Vector3 deceleration down to zero.
 Vector3 PositionedObject::DecelerationToZero(float decelerationAmount, float deltaTime)

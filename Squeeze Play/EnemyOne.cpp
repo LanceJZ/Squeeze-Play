@@ -12,7 +12,7 @@ bool EnemyOne::Initialize()
 	Enemy::Initialize();
 
 	//Scale = 1.0f;
-	Radius = 15;
+	Radius = 15.0f;
 
 	return false;
 }
